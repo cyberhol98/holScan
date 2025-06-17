@@ -70,12 +70,6 @@ You will be prompted to:
 
 - Ensure WPScan is installed and in your system’s PATH.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-
-
 
 
 
