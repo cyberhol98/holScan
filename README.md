@@ -18,6 +18,18 @@ It allows users to interactively choose targets and output formats without needi
 - [WPScan](https://wpscan.com/) installed and configured on your system  
 - A valid WPScan API token. You can get one by registering at [https://wpscan.com/](https://wpscan.com/)  
 
+### Don't Have WPScan Installed?
+If WPScan is not already installed on your system, you can use the included install script:
+
+Then execute this command below:
+chmod +x install.sh
+./install.sh
+
+This script will:
+- Check for Ruby
+- Automatically install Ruby using your system’s package manager
+- Install WPScan via RubyGems
+
 ---
 
 ## Installation
