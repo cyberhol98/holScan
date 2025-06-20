@@ -22,8 +22,10 @@ It allows users to interactively choose targets and output formats without needi
 If WPScan is not already installed on your system, you can use the included install script:
 
 Then execute this command below:
-chmod +x install.sh
-./install.sh
+
+   ```bash
+   chmod +x install.sh
+   ./install.sh
 
 This script will:
 - Check for Ruby
