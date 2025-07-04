@@ -1,17 +1,21 @@
 #!/bin/bash
 
-echo "🔍 Updating package list..."
-sudo apt update
+echo "🔍 Checking if WPScan is installed..."
 
-echo "📦 Installing dependencies: ruby, ruby-dev, build-essential, libcurl4-openssl-dev, libxml2, libxml2-dev, libxslt1-dev, zlib1g-dev"
-sudo apt install -y ruby ruby-dev build-essential libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev zlib1g-dev
+if ! command -v wpscan &> /dev/null; then
+    echo "⚙️ WPScan not found. Installing dependencies and WPScan..."
 
-echo "🔧 Installing Bundler..."
-sudo gem install bundler
+    sudo apt update
+    sudo apt install -y ruby ruby-dev build-essential libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev zlib1g-dev git
 
-echo "🛠 Installing WPScan..."
-sudo gem install wpscan
+    sudo gem install wpscan
 
-echo "✅ Done! You can now run ./holScan.sh"
+    echo "✅ WPScan installed successfully."
+else
+    echo "✅ WPScan is already installed."
+fi
 
+echo ""
+echo "📝 Reminder: Don’t forget to export your WPScan API token:"
+echo "   export WPSCAN_API_TOKEN=\"your-wpscan-api-token-here\""
 
