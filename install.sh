@@ -1,33 +1,30 @@
 #!/bin/bash
 
-echo "🔍 Checking for Ruby..."
+echo "🔍 Checking for required dependencies..."
+
+# Check if Ruby is installed
 if ! command -v ruby &> /dev/null; then
     echo "❌ Ruby not found. Installing Ruby..."
-
-    # Detect and install based on available package manager
-    if command -v apt &> /dev/null; then
-        sudo apt update
-        sudo apt install ruby-full -y
-    elif command -v dnf &> /dev/null; then
-        sudo dnf install ruby -y
-    elif command -v yum &> /dev/null; then
-        sudo yum install ruby -y
-    elif command -v pacman &> /dev/null; then
-        sudo pacman -Sy --noconfirm ruby
-    elif command -v zypper &> /dev/null; then
-        sudo zypper install ruby
-    else
-        echo "⚠️ Unsupported package manager. Please install Ruby manually."
-        exit 1
-    fi
+    sudo apt update && sudo apt install -y ruby-full
 else
     echo "✅ Ruby is already installed."
 fi
 
-echo "💎 Installing WPScan..."
-sudo gem install wpscan
+# Check if Bundler is installed
+if ! gem list -i bundler > /dev/null 2>&1; then
+    echo "📦 Installing Bundler..."
+    sudo gem install bundler
+else
+    echo "✅ Bundler is already installed."
+fi
 
-echo "✅ WPScan installation complete!"
-echo ""
-echo "📢 IMPORTANT: Before running holScan, export your WPScan API token:"
-echo 'export WPSCAN_API_TOKEN="your-api-token-here"'
+# Check if WPScan is installed
+if ! command -v wpscan &> /dev/null; then
+    echo "🛠 Installing WPScan..."
+    sudo gem install wpscan
+else
+    echo "✅ WPScan is already installed."
+fi
+
+echo "✅ All set! You can now run ./holScan.sh"
+
